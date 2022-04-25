@@ -1,6 +1,5 @@
 #include <iostream.h>
 #include <stdlib.h>
-#include <math.h>
 #include <dos.h>
 #include "GRAPHICS.H"
 #include "VECTOR.H"
