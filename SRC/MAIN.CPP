@@ -137,9 +137,9 @@ void main(void) {
         
         for (i = 0; i < neighboringDeadCells.size(); i++) {
             if (neighboringDeadCells[i].getAliveNeighbors() == 3) {
+                neighboringDeadCells[i].show();
                 neighboringDeadCells[i].resetAliveNeighbors();
                 aliveCells.push_back(neighboringDeadCells[i]);
-                neighboringDeadCells[i].show();
             }
         }
 
