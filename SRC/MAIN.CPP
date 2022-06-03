@@ -3,6 +3,7 @@
 #include <dos.h>
 #include "GRAPHICS.H"
 #include "VECTOR.H"
+#include "BOOL.H"
 
 
 class Cell: public Rectangle {

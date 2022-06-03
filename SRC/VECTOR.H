@@ -1,9 +1,9 @@
 #ifndef VECTOR_H
 #define VECTOR_H
+
 #include <iostream.h>
 #include <stdlib.h>
-
-#include "UTILS.H"
+#include <stddef.h>
 
 template <class T>
 class vector {
