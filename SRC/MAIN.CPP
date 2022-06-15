@@ -160,13 +160,11 @@ void main(void) {
 
 
 void checkIf(Cell &current, Cell &neigh, vector<Cell> &aliveCells, vector<Cell> &neighboringDeadCells) {
-    bool found = true;
+    bool found = false;
     for (int i = 0; i < aliveCells.size(); i++) {
         if (aliveCells[i] == neigh) {
             current.incrementAliveNeighbors();
-            return;
-        } else {
-            found = false;
+            found = true;
         }
     }
     if (!found) {
@@ -181,8 +179,8 @@ void checkIf(Cell &current, Cell &neigh, vector<Cell> &aliveCells, vector<Cell> 
             neigh.incrementAliveNeighbors();
             neighboringDeadCells.push_back(neigh);
         }
-    }
-    neigh.resetAliveNeighbors();
+        neigh.resetAliveNeighbors();
+    }  
 }
 
 
