@@ -11,14 +11,19 @@
 + DOSBox or a real DOS computer
 
 ### Building
+#### Using MAKE and TCC
 ```bash
 C:\>MAKE.EXE
 ```
 or
-```
+```bash
 C:\>TCC.EXE -c -oGRAPHICS.OBJ SRC/GRAPHICS.CPP
 C:\>TCC.EXE SRC/MAIN.CPP GRAPHICS.OBJ
 ```
+#### Using Turbo C++
+Move `DOSLIFE.PRJ` into `SRC` folder and open `TC.EXE`
+
+![tc](ASSETS/tc.gif)
 
 ### Run
 ```bash
