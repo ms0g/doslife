@@ -20,25 +20,25 @@ public:
 
     void clear(void);
 
-    T &begin(void);
+    T& begin(void);
 
-    T &end(void);
+    T& end(void);
 
-    const T &cbegin(void) const;
+    const T& cbegin(void) const;
     
-    const T &cend(void) const;
+    const T& cend(void) const;
 
-    T &get(int index) const;
+    T& get(int index) const;
 
-    void set(int index, T &value);
+    void set(int index, T& value);
 
-    void insert(int index, T &value);
+    void insert(int index, T& value);
     
     void remove(int index);
 
-    void push_back(T &value);
+    void push_back(T& value);
     
-    T &operator[](int index);
+    T& operator[](int index);
 private:
     T *m_pData;
     int m_count;
@@ -84,23 +84,23 @@ void vector<T>::clear(void){
 }
 
 template <class T>
-T &vector<T>::begin(void) {
+T& vector<T>::begin(void) {
     return m_pData[0];
 }
 
 template <class T>
-T &vector<T>::end(void) {
-    return m_pData[m_count-1];
+T& vector<T>::end(void) {
+    return m_pData[m_count - 1];
 }
 
 template <class T>
-const T &vector<T>::cbegin(void) const {
+const T& vector<T>::cbegin(void) const {
     return m_pData[0];
 }
 
 template <class T>
-const T &vector<T>::cend(void) const {
-    return m_pData[m_count-1];
+const T& vector<T>::cend(void) const {
+    return m_pData[m_count - 1];
 }
 
 template <class T>
@@ -152,7 +152,7 @@ void vector<T>::remove(int index) {
         exit(1);
     }
     for (int i = index; i < m_count - 1; i++) {
-        m_pData[i] = m_pData[i+1];
+        m_pData[i] = m_pData[i + 1];
     }
     m_count--;
 }

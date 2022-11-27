@@ -55,9 +55,9 @@ private:
     int m_aliveNeighbors;
 };
 
-void checkIf(Cell &current, Cell &neigh, vector<Cell> &aliveCells, vector<Cell> &neighboringDeadCells);
+void checkIf(Cell& currentAlive, Cell& neigh, vector<Cell>& aliveCells, vector<Cell>& neighboringDeadCells);
 
-void findAliveNeighbors(Cell &cell, vector<Cell> &aliveCells, vector<Cell> &neighboringDeadCells);
+void findAliveNeighbors(Cell& cell, vector<Cell>& aliveCells, vector<Cell>& neighboringDeadCells);
 
 void main(void) {   
     initGFM();
@@ -159,11 +159,11 @@ void main(void) {
 }
 
 
-void checkIf(Cell &current, Cell &neigh, vector<Cell> &aliveCells, vector<Cell> &neighboringDeadCells) {
+void checkIf(Cell& currentAlive, Cell& neigh, vector<Cell>& aliveCells, vector<Cell>& neighboringDeadCells) {
     bool found = false;
     for (int i = 0; i < aliveCells.size(); i++) {
         if (aliveCells[i] == neigh) {
-            current.incrementAliveNeighbors();
+            currentAlive.incrementAliveNeighbors();
             found = true;
         }
     }
@@ -184,42 +184,42 @@ void checkIf(Cell &current, Cell &neigh, vector<Cell> &aliveCells, vector<Cell> 
 }
 
 
-void findAliveNeighbors(Cell &current, vector<Cell> &aliveCells, vector<Cell> &neighboringDeadCells) {
+void findAliveNeighbors(Cell& cell, vector<Cell>& aliveCells, vector<Cell>& neighboringDeadCells) {
     // right neighbor
-    Cell neigh(current.getX()+9, current.getY(), 8, 8, GREEN);
-    checkIf(current, neigh, aliveCells, neighboringDeadCells);
+    Cell neigh(cell.getX()+9, cell.getY(), 8, 8, GREEN);
+    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
     
     // left neighbor
-    neigh.setX(current.getX()-9);
-    checkIf(current, neigh, aliveCells, neighboringDeadCells);
+    neigh.setX(cell.getX()-9);
+    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
     
     // top neighbor
-    neigh.setX(current.getX());
-    neigh.setY(current.getY()-9);
-    checkIf(current, neigh, aliveCells, neighboringDeadCells);
+    neigh.setX(cell.getX());
+    neigh.setY(cell.getY()-9);
+    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
     
     // bottom neighbor
-    neigh.setY(current.getY()+9);
-    checkIf(current, neigh, aliveCells, neighboringDeadCells);
+    neigh.setY(cell.getY()+9);
+    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
     
     // top right neighbor
-    neigh.setX(current.getX()+9);
-    neigh.setY(current.getY()-9);
-    checkIf(current, neigh, aliveCells, neighboringDeadCells);
+    neigh.setX(cell.getX()+9);
+    neigh.setY(cell.getY()-9);
+    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
    
     // top left neighbor
-    neigh.setX(current.getX()-9);
-    neigh.setY(current.getY()-9);
-    checkIf(current, neigh, aliveCells, neighboringDeadCells);
+    neigh.setX(cell.getX()-9);
+    neigh.setY(cell.getY()-9);
+    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
    
     // bottom right neighbor
-    neigh.setX(current.getX()+9);
-    neigh.setY(current.getY()+9);
-    checkIf(current, neigh, aliveCells, neighboringDeadCells);
+    neigh.setX(cell.getX()+9);
+    neigh.setY(cell.getY()+9);
+    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
     
     // bottom left neighbor
-    neigh.setX(current.getX()-9);
-    neigh.setY(current.getY()+9);
-    checkIf(current, neigh, aliveCells, neighboringDeadCells);
+    neigh.setX(cell.getX()-9);
+    neigh.setY(cell.getY()+9);
+    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
             
 }
