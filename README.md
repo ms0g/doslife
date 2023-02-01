@@ -20,7 +20,7 @@ or
 C:\>TCC.EXE -c -oGRAPHICS.OBJ SRC/GRAPHICS.CPP
 C:\>TCC.EXE SRC/MAIN.CPP GRAPHICS.OBJ
 ```
-#### Using Turbo C++
+#### Using IDE
 Move `DOSLIFE.PRJ` into `SRC` folder and open `TC.EXE`
 
 ![tc](ASSETS/tc.gif)
