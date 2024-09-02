@@ -5,13 +5,13 @@
 
 ![doslife](ASSETS/doslife.gif)
 
-### Prerequisites
+## Prerequisites
 + Turbo C++ (>= 3.0)
 + Turbo Assembler (>= 3.2)
 + DOSBox or a real DOS computer
 
-### Building
-#### Using MAKE and TCC
+## Building
+### Using MAKE and TCC
 ```bash
 C:\>MAKE.EXE
 ```
@@ -20,12 +20,12 @@ or
 C:\>TCC.EXE -c -oGRAPHICS.OBJ SRC/GRAPHICS.CPP
 C:\>TCC.EXE SRC/MAIN.CPP GRAPHICS.OBJ
 ```
-#### Using IDE
+### Using IDE
 Move `DOSLIFE.PRJ` into `SRC` folder and open `TC.EXE`
 
 ![tc](ASSETS/tc.gif)
 
-### Run
+## Run
 ```bash
 C:\>MAIN.EXE
 ```
