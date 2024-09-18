@@ -15,8 +15,6 @@ Conway's Game of Life is a zero-player game that simulates cellular automaton be
 
 ## Building
 ### Using MAKE and TCC
-## Building
-### Using MAKE and TCC
 ```bash
 C:\>MAKE.EXE
 ```
@@ -26,12 +24,10 @@ C:\>TCC.EXE -c -oGRAPHICS.OBJ SRC/GRAPHICS.CPP
 C:\>TCC.EXE SRC/MAIN.CPP GRAPHICS.OBJ
 ```
 ### Using IDE
-### Using IDE
 Move `DOSLIFE.PRJ` into `SRC` folder and open `TC.EXE`
 
 ![tc](ASSETS/tc.gif)
 
-## Run
 ## Run
 ```bash
 C:\>DOSLIFE.EXE
