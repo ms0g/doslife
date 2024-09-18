@@ -134,10 +134,12 @@ void main(void) {
         
         for (i = 0; i < aliveCells.size(); i++) {
             findAliveNeighbors(aliveCells[i], aliveCells, neighboringDeadCells);
+            
             if (aliveCells[i].getAliveNeighbors() < 2 || aliveCells[i].getAliveNeighbors() > 3) {
                 aliveCells[i].hide();
                 newlyDeadCells.push_back(aliveCells[i]);
             }
+            
             aliveCells[i].resetAliveNeighbors();
         } 
         
@@ -159,7 +161,6 @@ void main(void) {
 
         neighboringDeadCells.clear();
         delay(100);
-
     }
 }
 
@@ -205,12 +206,14 @@ void findAliveNeighbors(Cell& cell, vector<Cell>& aliveCells, vector<Cell>& neig
 
 void checkNeighbor(Cell& currentAlive, Cell& neigh, vector<Cell>& aliveCells, vector<Cell>& neighboringDeadCells) {
     bool found = false;
+
     for (int i = 0; i < aliveCells.size(); i++) {
         if (aliveCells[i] == neigh) {
             currentAlive.incrementAliveNeighbors();
             found = true;
         }
     }
+
     if (!found) {
         for (int i = 0; i < neighboringDeadCells.size(); i++) {
             if (neighboringDeadCells[i] == neigh) {
@@ -219,10 +222,12 @@ void checkNeighbor(Cell& currentAlive, Cell& neigh, vector<Cell>& aliveCells, ve
                 break;
             }
         }
+
         if (!found) {
             neigh.incrementAliveNeighbors();
             neighboringDeadCells.push_back(neigh);
         }
+
         neigh.resetAliveNeighbors();
     }  
 }
