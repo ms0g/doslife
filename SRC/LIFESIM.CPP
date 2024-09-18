@@ -85,7 +85,5 @@ void LifeSimulator::findAliveNeighbors(Cell& cell) {
             neighbor.incrementAliveNeighbors();
             mNeighboringDeadCells.push_back(neighbor);
         }
-
-        neighbor.resetAliveNeighbors();
     }  
 }
