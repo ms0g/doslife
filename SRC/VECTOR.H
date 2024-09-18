@@ -13,6 +13,8 @@ public:
     vector(int size);
 
     ~vector();
+
+    void reserve(int size);
     
     int size(void) const;
 
@@ -40,7 +42,7 @@ public:
     
     T& operator[](int index);
 private:
-    T *m_pData;
+    T* m_pData;
     int m_count;
     int m_capacity;
 
@@ -63,6 +65,13 @@ vector<T>::vector(int size) {
 template <class T>
 vector<T>::~vector() {
     if (m_pData != NULL) delete[] m_pData;
+}
+
+template <class T>
+void vector<T>::reserve(int size) {
+    m_pData = new T[size];
+    m_capacity = size;
+    m_count = 0;
 }
 
 template <class T>
