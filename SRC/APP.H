@@ -12,8 +12,6 @@ public:
     void loop(void);
 
 private:
-    void processInput(void);
-
     void update(void);
 
     void render(void);
