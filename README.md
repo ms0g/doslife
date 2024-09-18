@@ -2,7 +2,7 @@
 ## Overview
 Conway's Game of Life is a zero-player game that simulates cellular automaton behavior, meaning that its evolution is determined by its initial state, requiring no further input from the player. This implementation displays the game in real-time on a DOS terminal using VGA mode 13h graphics. Each character on the screen represents a cell, either alive or dead, that evolves based on its neighbors.
 
-![doslife](ASSETS/doslife.gif)
+<img src="ASSETS/doslife.gif" alt="image" width="700" height="auto">
 
 ## Rules
 + A live cell that has live neighbors below 2 or above 3 dies.
@@ -26,7 +26,8 @@ C:\>TCC.EXE SRC/MAIN.CPP GRAPHICS.OBJ
 ### Using IDE
 Move `DOSLIFE.PRJ` into `SRC` folder and open `TC.EXE`
 
-![tc](ASSETS/tc.gif)
+<img src="ASSETS/tc.gif" alt="image" width="700" height="auto">
+
 
 ## Run
 ```bash
