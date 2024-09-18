@@ -1,8 +1,8 @@
-#include "GOL.H"
+#include "LIFESIM.H"
 #include "RENDERER.H"
 #include "STATES.H"
 
-GOL::GOL() {
+LifeSimulator::LifeSimulator() {
     mAliveCells.reserve(INITIAL_CELL_COUNT);
     
     for (int i = 0; i < INITIAL_CELL_COUNT; i++) {
@@ -11,7 +11,7 @@ GOL::GOL() {
     }
 }
 
-void GOL::update(void) {
+void LifeSimulator::update(void) {
     int i;
         
     for (i = 0; i < mAliveCells.size(); i++) {
@@ -43,7 +43,7 @@ void GOL::update(void) {
     mNewlyDeadCells.clear();
 }
 
-void GOL::draw(Renderer* renderer) {
+void LifeSimulator::draw(Renderer* renderer) {
     for (int i = 0; i < mAliveCells.size(); i++) {
         renderer->rectangle(
             mAliveCells[i].x(),
@@ -55,14 +55,14 @@ void GOL::draw(Renderer* renderer) {
     }
 }
 
-void GOL::findAliveNeighbors(Cell& cell) {
+void LifeSimulator::findAliveNeighbors(Cell& cell) {
     for (int i = 0; i < NEIGHBOR_COUNT; i++) {
         Cell neighbor(cell.x() + neighborState[i][0], cell.y() + neighborState[i][1]);
         checkNeighbor(cell, neighbor);
     }
 }
 
- void GOL::checkNeighbor(Cell& currentAlive, Cell& neighbor) {
+ void LifeSimulator::checkNeighbor(Cell& currentAlive, Cell& neighbor) {
     int found = 0;
 
     for (int i = 0; i < mAliveCells.size(); i++) {

@@ -52,9 +52,9 @@ private:
 };
 
 class Renderer;
-class GOL {
+class LifeSimulator {
 public:
-    GOL();
+    LifeSimulator();
 
     void update(void);
 

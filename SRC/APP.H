@@ -2,7 +2,7 @@
 #define APP_H
 
 class Renderer;
-class GOL;
+class LifeSimulator;
 class App {
 public:
     App();
@@ -18,7 +18,7 @@ private:
 
     Renderer* renderer;
     
-    GOL* gol;
+    LifeSimulator* lifesim;
 
     int isRunning;
 };

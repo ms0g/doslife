@@ -1,11 +1,11 @@
 #include "APP.H"
 #include "RENDERER.H"
-#include "GOL.H"
+#include "LIFESIM.H"
 
 App::App() {
     renderer = new Renderer();
 
-    gol = new GOL();
+    lifesim = new LifeSimulator();
 
     isRunning = 1;
 }
@@ -13,7 +13,7 @@ App::App() {
 App::~App() {
     delete renderer;
 
-    delete gol;
+    delete lifesim;
 }
 
 void App::loop(void) {
@@ -24,13 +24,13 @@ void App::loop(void) {
 }
 
 void App::update(void) {
-    gol->update();
+    lifesim->update();
 }
 
 void App::render(void) {
     renderer->clear(BLACK);
 
-    gol->draw(renderer);
+    lifesim->draw(renderer);
 
     renderer->updateBuffer();
 }
