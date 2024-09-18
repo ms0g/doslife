@@ -1,61 +1,14 @@
 #include "GOL.H"
 #include "RENDERER.H"
+#include "STATES.H"
 
 GOL::GOL() {
-    mAliveCells.reserve(21);
+    mAliveCells.reserve(INITIAL_CELL_COUNT);
     
-    Cell c(9, 182);
-    mAliveCells.push_back(c);
-    c.setX(18);
-    mAliveCells.push_back(c);
-    c.setX(27);
-    mAliveCells.push_back(c);
-    c.setX(18);
-    c.setY(173);
-    mAliveCells.push_back(c);
-    c.setX(27);
-    mAliveCells.push_back(c);
-    c.setX(36);
-    mAliveCells.push_back(c);
- 
-    c.setX(104);
-    c.setY(50);
-    mAliveCells.push_back(c);
-    c.setY(59);
-    mAliveCells.push_back(c);
-    c.setY(68);
-    mAliveCells.push_back(c);
-    c.setY(77);
-    c.setX(113);
-    mAliveCells.push_back(c);
-    c.setY(86);
-    c.setX(122);
-    mAliveCells.push_back(c);
-    c.setX(131);
-    mAliveCells.push_back(c);
-    c.setX(113);
-    c.setY(41);
-    mAliveCells.push_back(c);
-    c.setX(122);
-    c.setY(32);
-    mAliveCells.push_back(c);
-    c.setX(131);
-    mAliveCells.push_back(c);
-
-    c.setX(302);
-    c.setY(41);
-    mAliveCells.push_back(c);
-    c.setX(293);
-    mAliveCells.push_back(c);
-    c.setX(284);
-    mAliveCells.push_back(c);
-    c.setX(293);
-    c.setY(50);
-    mAliveCells.push_back(c);
-    c.setX(284);
-    mAliveCells.push_back(c);
-    c.setX(275);
-    mAliveCells.push_back(c);
+    for (int i = 0; i < INITIAL_CELL_COUNT; i++) {
+        Cell c(initialState[i][0], initialState[i][1]);
+        mAliveCells.push_back(c);
+    }
 }
 
 void GOL::update(void) {
@@ -103,42 +56,10 @@ void GOL::draw(Renderer* renderer) {
 }
 
 void GOL::findAliveNeighbors(Cell& cell) {
-    // right neighbor
-    Cell neighbor(cell.x()+9, cell.y());
-    checkNeighbor(cell, neighbor);
-    
-    // left neighbor
-    neighbor.setX(cell.x()-9);
-    checkNeighbor(cell, neighbor);
-    
-    // top neighbor
-    neighbor.setX(cell.x());
-    neighbor.setY(cell.y()-9);
-    checkNeighbor(cell, neighbor);
-    
-    // bottom neighbor
-    neighbor.setY(cell.y()+9);
-    checkNeighbor(cell, neighbor);
-    
-    // top right neighbor
-    neighbor.setX(cell.x()+9);
-    neighbor.setY(cell.y()-9);
-    checkNeighbor(cell, neighbor);
-   
-    // top left neighbor
-    neighbor.setX(cell.x()-9);
-    neighbor.setY(cell.y()-9);
-    checkNeighbor(cell, neighbor);
-   
-    // bottom right neighbor
-    neighbor.setX(cell.x()+9);
-    neighbor.setY(cell.y()+9);
-    checkNeighbor(cell, neighbor);
-    
-    // bottom left neighbor
-    neighbor.setX(cell.x()-9);
-    neighbor.setY(cell.y()+9);
-    checkNeighbor(cell, neighbor);
+    for (int i = 0; i < NEIGHBOR_COUNT; i++) {
+        Cell neighbor(cell.x() + neighborState[i][0], cell.y() + neighborState[i][1]);
+        checkNeighbor(cell, neighbor);
+    }
 }
 
  void GOL::checkNeighbor(Cell& currentAlive, Cell& neighbor) {

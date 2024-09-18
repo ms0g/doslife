@@ -24,10 +24,7 @@ public:
     int width(void) const { return mWidth; }
     int height(void) const { return mHeight; }
     char color(void) const { return mColor; }
-    // TODO: remove
-    void setX(int x) { mX = x; }
-    void setY(int y) { mY = y; }
-
+   
     int getAliveNeighbors(void) {
         return mAliveNeighbors;
     }
@@ -58,8 +55,6 @@ class Renderer;
 class GOL {
 public:
     GOL();
-
-    ~GOL();
 
     void update(void);
 
