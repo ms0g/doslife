@@ -3,7 +3,6 @@
 #include "UI.H"
 #include "KEYBRD.H"
 #include "GOL.H"
-#include <conio.h>
 
 App::App() {
     renderer = new Renderer();
