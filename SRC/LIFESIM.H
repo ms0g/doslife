@@ -1,6 +1,6 @@
 
-#ifndef GOL_H
-#define GOL_H
+#ifndef LIFESIM_H
+#define LIFESIM_H
 
 #include "VECTOR.H"
 
