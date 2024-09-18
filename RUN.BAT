@@ -4,5 +4,5 @@ ECHO Building and Run DOSLIFE...
 ECHO =====================
 
 MAKE.EXE
-MAIN.EXE
+DOSLIFE.EXE
 PAUSE
