@@ -1,10 +1,14 @@
-#include <iostream.h>
-#include <stdlib.h>
-#include <dos.h>
+#include <DOS.h>
 #include "GRAPHICS.H"
 #include "VECTOR.H"
-#include "BOOL.H"
 
+#define CELL_W 8
+#define CELL_H 8
+
+enum bool {
+    false,
+    true
+};
 
 class Cell: public Rectangle {
 public:
@@ -55,7 +59,7 @@ private:
     int m_aliveNeighbors;
 };
 
-void checkIf(Cell& currentAlive, Cell& neigh, vector<Cell>& aliveCells, vector<Cell>& neighboringDeadCells);
+void checkNeighbor(Cell& currentAlive, Cell& neigh, vector<Cell>& aliveCells, vector<Cell>& neighboringDeadCells);
 
 void findAliveNeighbors(Cell& cell, vector<Cell>& aliveCells, vector<Cell>& neighboringDeadCells);
 
@@ -66,7 +70,7 @@ void main(void) {
     vector<Cell> neighboringDeadCells;
 
     // Create the cells
-    Cell c(9, 182, 8, 8, GREEN);
+    Cell c(9, 182, CELL_W, CELL_H, GREEN);
     aliveCells.push_back(c);
     c.setX(18);
     aliveCells.push_back(c);
@@ -127,6 +131,7 @@ void main(void) {
         delay(100);
         int i;
         vector<Cell> newlyDeadCells;
+        
         for (i = 0; i < aliveCells.size(); i++) {
             findAliveNeighbors(aliveCells[i], aliveCells, neighboringDeadCells);
             if (aliveCells[i].getAliveNeighbors() < 2 || aliveCells[i].getAliveNeighbors() > 3) {
@@ -159,53 +164,46 @@ void main(void) {
 }
 
 void findAliveNeighbors(Cell& cell, vector<Cell>& aliveCells, vector<Cell>& neighboringDeadCells) {
-    for (int i = -1; i < 2; ++i) {
-        for (int j = -1; j < 2; ++j) {
-            Cell neigh(cell.getX() + i, cell.getY() + j, 8, 8, GREEN);
-            checkIf(cell, neigh, aliveCells, neighboringDeadCells);
-            
-        }
-    }
    // right neighbor
-    Cell neigh(cell.getX()+9, cell.getY(), 8, 8, GREEN);
-    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
+    Cell neigh(cell.getX()+9, cell.getY(), CELL_W, CELL_H, GREEN);
+    checkNeighbor(cell, neigh, aliveCells, neighboringDeadCells);
     
     // left neighbor
     neigh.setX(cell.getX()-9);
-    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
+    checkNeighbor(cell, neigh, aliveCells, neighboringDeadCells);
     
     // top neighbor
     neigh.setX(cell.getX());
     neigh.setY(cell.getY()-9);
-    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
+    checkNeighbor(cell, neigh, aliveCells, neighboringDeadCells);
     
     // bottom neighbor
     neigh.setY(cell.getY()+9);
-    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
+    checkNeighbor(cell, neigh, aliveCells, neighboringDeadCells);
     
     // top right neighbor
     neigh.setX(cell.getX()+9);
     neigh.setY(cell.getY()-9);
-    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
+    checkNeighbor(cell, neigh, aliveCells, neighboringDeadCells);
    
     // top left neighbor
     neigh.setX(cell.getX()-9);
     neigh.setY(cell.getY()-9);
-    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
+    checkNeighbor(cell, neigh, aliveCells, neighboringDeadCells);
    
     // bottom right neighbor
     neigh.setX(cell.getX()+9);
     neigh.setY(cell.getY()+9);
-    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
+    checkNeighbor(cell, neigh, aliveCells, neighboringDeadCells);
     
     // bottom left neighbor
     neigh.setX(cell.getX()-9);
     neigh.setY(cell.getY()+9);
-    checkIf(cell, neigh, aliveCells, neighboringDeadCells);
+    checkNeighbor(cell, neigh, aliveCells, neighboringDeadCells);
             
 }
 
-void checkIf(Cell& currentAlive, Cell& neigh, vector<Cell>& aliveCells, vector<Cell>& neighboringDeadCells) {
+void checkNeighbor(Cell& currentAlive, Cell& neigh, vector<Cell>& aliveCells, vector<Cell>& neighboringDeadCells) {
     bool found = false;
     for (int i = 0; i < aliveCells.size(); i++) {
         if (aliveCells[i] == neigh) {
