@@ -1,7 +1,5 @@
 #include "APP.H"
 #include "RENDERER.H"
-#include "UI.H"
-#include "KEYBRD.H"
 #include "GOL.H"
 
 App::App() {

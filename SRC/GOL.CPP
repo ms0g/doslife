@@ -6,8 +6,8 @@ GOL::GOL() {
     mAliveCells.reserve(INITIAL_CELL_COUNT);
     
     for (int i = 0; i < INITIAL_CELL_COUNT; i++) {
-        Cell c(initialState[i][0], initialState[i][1]);
-        mAliveCells.push_back(c);
+        Cell cell(initialState[i][0], initialState[i][1]);
+        mAliveCells.push_back(cell);
     }
 }
 
@@ -88,4 +88,4 @@ void GOL::findAliveNeighbors(Cell& cell) {
 
         neighbor.resetAliveNeighbors();
     }  
- }
+}

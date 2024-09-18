@@ -24,15 +24,9 @@ enum COLORS {
 
 class Renderer {
 public:
-    void putpixel(int x, int y, char color);
-
     void putchar(int x, int y, char color, const int (*font)[5][5]);
 
-    void drawLine(int x0, int y0, int x1, int y1, char color);
-
     void rectangle(int x, int y, int width, int height, char color);
-
-    void drawFilledTriangle(int x0, int y0, int x1, int y1, int x2, int y2, unsigned short color);
 
     /**
      * Bresenham’s circle drawing algorithm.
@@ -45,8 +39,6 @@ public:
     void updateBuffer(void);
 
 private:
-    void fillFlatBottomTriangle(int x0, int y0, int x1, int y1, int x2, int y2, unsigned short color);
-    void fillFlatTopTriangle(int x0, int y0, int x1, int y1, int x2, int y2, unsigned short color);
     void _circle(int xc, int yc, int x, int y, char color);
 
     VGA vga;
