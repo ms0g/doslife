@@ -58,6 +58,11 @@ void LifeSimulator::draw(Renderer* renderer) {
 void LifeSimulator::findAliveNeighbors(Cell& cell) {
     for (int i = 0; i < NEIGHBOR_COUNT; i++) {
         Cell neighbor(cell.x() + neighborState[i][0], cell.y() + neighborState[i][1]);
+
+        // Check grid borders
+        if (neighbor.x() < 0 || neighbor.y() < 0 || neighbor.x() >= 312 || neighbor.y() >= 192)
+            continue;
+        
         checkNeighbor(cell, neighbor);
     }
 }
