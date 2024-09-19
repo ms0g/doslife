@@ -49,22 +49,25 @@ private:
 };
 
 template <class T>
-vector<T>::vector() {
-    m_pData = NULL;
-    m_count = 0;
-    m_capacity = 1;
+vector<T>::vector(): 
+    m_pData(NULL), 
+    m_count(0), 
+    m_capacity(1) {
+    reserve(m_capacity);
 }
 
 template <class T>
 vector<T>::vector(int size) {
-    m_pData = new T[size];
-    m_capacity = size;
-    m_count = 0;
+    reserve(size);
 }
 
 template <class T>
 vector<T>::~vector() {
-    if (m_pData != NULL) delete[] m_pData;
+    if (m_pData != NULL) {
+        delete[] m_pData;
+        m_pData = NULL;
+    }
+    
 }
 
 template <class T>
@@ -86,10 +89,13 @@ int vector<T>::isEmpty(void) const {
 
 template <class T>
 void vector<T>::clear(void){
-    if (m_pData != NULL) delete[] m_pData;
+    if (m_pData != NULL) {
+        delete[] m_pData;
+        m_pData = NULL;
+    }
+
     m_count = 0;
     m_capacity = 1;
-    m_pData = NULL;
 }
 
 template <class T>
@@ -136,6 +142,7 @@ void vector<T>::insert(int index, T& value) {
         cout << "insert:Index out of bounds";
         exit(1);
     }
+
     if (m_count == m_capacity) {
         T* temp = new T[2 * m_capacity];
  
@@ -149,7 +156,7 @@ void vector<T>::insert(int index, T& value) {
         m_capacity *= 2;
         m_pData = temp;
     }
-   
+
     m_pData[index] = value;
     m_count++;
 }
@@ -163,11 +170,16 @@ void vector<T>::remove(int index) {
     for (int i = index; i < m_count - 1; i++) {
         m_pData[i] = m_pData[i + 1];
     }
+    
     m_count--;
 }
 
 template <class T>
 void vector<T>::push_back(T& value) {
+    if (m_pData == NULL) {
+        reserve(m_capacity);
+    }
+
     insert(m_count, value);
 }
 
@@ -177,6 +189,7 @@ T& vector<T>::operator[](int index) {
         cout << "operator[]:Index out of bounds";
         exit(1);
     }
+
     return m_pData[index];
 }
 
