@@ -63,7 +63,7 @@ public:
 private:
     void findAliveNeighbors(Cell& cell);
 
-    void checkNeighbor(Cell& currentAlive, Cell& neigh);
+    void checkNeighbor(Cell& currentAlive, Cell& neighbor);
     
     vector<Cell> mAliveCells;
     vector<Cell> mNeighboringDeadCells;
