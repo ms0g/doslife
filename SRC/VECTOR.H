@@ -42,18 +42,18 @@ public:
     
     T& operator[](int index);
 private:
-    T* m_pData;
-    int m_count;
-    int m_capacity;
+    T* mData;
+    int mCount;
+    int mCapacity;
 
 };
 
 template <class T>
 vector<T>::vector(): 
-    m_pData(NULL), 
-    m_count(0), 
-    m_capacity(1) {
-    reserve(m_capacity);
+    mData(NULL), 
+    mCount(0), 
+    mCapacity(1) {
+    reserve(mCapacity);
 }
 
 template <class T>
@@ -63,134 +63,136 @@ vector<T>::vector(int size) {
 
 template <class T>
 vector<T>::~vector() {
-    if (m_pData != NULL) {
-        delete[] m_pData;
-        m_pData = NULL;
+    if (mData != NULL) {
+        delete[] mData;
+        mData = NULL;
     }
-    
 }
 
 template <class T>
 void vector<T>::reserve(int size) {
-    m_pData = new T[size];
-    m_capacity = size;
-    m_count = 0;
+    mData = new T[size];
+    mCapacity = size;
+    mCount = 0;
 }
 
 template <class T>
 int vector<T>::size(void) const {
-    return m_count;
+    return mCount;
 }
 
 template <class T>
 int vector<T>::isEmpty(void) const {
-    return m_count == 0;
+    return mCount == 0;
 }
 
 template <class T>
 void vector<T>::clear(void){
-    if (m_pData != NULL) {
-        delete[] m_pData;
-        m_pData = NULL;
+    if (mData != NULL) {
+        delete[] mData;
+        mData = NULL;
     }
 
-    m_count = 0;
-    m_capacity = 1;
+    mCount = 0;
+    mCapacity = 1;
 }
 
 template <class T>
 T& vector<T>::begin(void) {
-    return m_pData[0];
+    return mData[0];
 }
 
 template <class T>
 T& vector<T>::end(void) {
-    return m_pData[m_count - 1];
+    return mData[mCount - 1];
 }
 
 template <class T>
 const T& vector<T>::cbegin(void) const {
-    return m_pData[0];
+    return mData[0];
 }
 
 template <class T>
 const T& vector<T>::cend(void) const {
-    return m_pData[m_count - 1];
+    return mData[mCount - 1];
 }
 
 template <class T>
 T& vector<T>::get(int index) const {
-    if (index < 0 || index >= m_count) {
+    if (index < 0 || index >= mCount) {
         cout << "get:Index out of bounds";
         exit(1);
     }
-    return m_pData[index];
+
+    return mData[index];
 }
 
 template <class T>
 void vector<T>::set(int index, T& value) {
-    if (index < 0 || index > m_count) {
+    if (index < 0 || index > mCount) {
         cout << "set:Index out of bounds";
         exit(1);
     }
-    m_pData[index] = value;
+
+    mData[index] = value;
 }
 
 template <class T>
 void vector<T>::insert(int index, T& value) {
-    if (index < 0 || index > m_count) {
+    if (index < 0 || index > mCount) {
         cout << "insert:Index out of bounds";
         exit(1);
     }
 
-    if (m_count == m_capacity) {
-        T* temp = new T[2 * m_capacity];
+    if (mCount == mCapacity) {
+        T* temp = new T[2 * mCapacity];
  
         // copying old array elements to new array
-        for (int i = 0; i < m_capacity; i++) {
-            temp[i] = m_pData[i];
+        for (int i = 0; i < mCapacity; i++) {
+            temp[i] = mData[i];
         }
  
         // deleting previous array
-        delete[] m_pData;
-        m_capacity *= 2;
-        m_pData = temp;
+        delete[] mData;
+        mCapacity *= 2;
+        mData = temp;
     }
 
-    m_pData[index] = value;
-    m_count++;
+    mData[index] = value;
+    ++mCount;
 }
 
 template <class T>
 void vector<T>::remove(int index) {
-    if (index < 0 || index > m_count) {
+    if (index < 0 || index > mCount) {
         cout << "remove:Index out of bounds";
         exit(1);
     }
-    for (int i = index; i < m_count - 1; i++) {
-        m_pData[i] = m_pData[i + 1];
-    }
     
-    m_count--;
+    for (int i = index; i < mCount - 1; i++) {
+        mData[i] = mData[i + 1];
+    }
+
+    --mCount;
 }
 
 template <class T>
 void vector<T>::push_back(T& value) {
-    if (m_pData == NULL) {
-        reserve(m_capacity);
+    if (mData == NULL) {
+        reserve(mCapacity);
     }
 
-    insert(m_count, value);
+    insert(mCount, value);
 }
 
 template <class T>
 T& vector<T>::operator[](int index) {
-    if (index < 0 || index > m_count) {
+    if (index < 0 || index > mCount) {
         cout << "operator[]:Index out of bounds";
         exit(1);
     }
 
-    return m_pData[index];
+    return mData[index];
 }
 
 #endif
