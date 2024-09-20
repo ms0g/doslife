@@ -73,7 +73,10 @@ vector<T>::~vector() {
 
 template <class T>
 void vector<T>::reserve(int size) {
+    delete[] mData;
+    
     mData = new T[size];
+    
     mCapacity = size;
     mCount = 0;
 }
@@ -187,11 +190,6 @@ void vector<T>::push_back(T& value) {
 
 template <class T>
 T& vector<T>::operator[](int index) {
-    if (index < 0 || index > mCount) {
-        cerr << "operator[]:Index out of bounds";
-        exit(1);
-    }
-
     return mData[index];
 }
 
