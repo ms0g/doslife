@@ -98,10 +98,9 @@ int vector<T>::isEmpty(void) const {
 
 template <class T>
 void vector<T>::clear(void){
-    memset(mData, 0, mCount);
+    memset(mData, 0, sizeof(T) * mCount);
     
     mCount = 0;
-    mCapacity = 1;
 }
 
 template <class T>
