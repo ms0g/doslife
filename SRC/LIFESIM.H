@@ -10,14 +10,10 @@
 
 class Cell {
 public:
-    Cell() {
-        mAliveNeighbors = 0;
-    }
+    Cell(): mAliveNeighbors(0) {}
     
     Cell(int x, int y, int width = CELL_WIDTH, int height = CELL_HEIGHT, char color = CELL_COLOR): 
-        mX(x), mY(y), mWidth(width), mHeight(height), mColor(color) {
-        mAliveNeighbors = 0;
-    }
+        mX(x), mY(y), mWidth(width), mHeight(height), mColor(color), mAliveNeighbors(0) {}
 
     int x(void) const { return mX; }
     int y(void) const { return mY; }
