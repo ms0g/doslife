@@ -1,5 +1,4 @@
 # doslife: Conway's Game of Life in 16-bit Real Mode 
-## Overview
 Conway's Game of Life is a zero-player game that simulates cellular automaton behavior, meaning that its evolution is determined by its initial state, requiring no further input from the player. This implementation displays the game in real-time on a DOS terminal using VGA mode 13h graphics. Each character on the screen represents a cell, either alive or dead, that evolves based on its neighbors.
 For the EXE file, download it from [itch.io](https://ms0g.itch.io/doslife).
 
@@ -23,7 +22,5 @@ C:\>MAKE.EXE
 C:\>DOSLIFE.EXE
 ```
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the GPL-2.0 License. See the LICENSE file for details.
 
-## Credits
-Developed by M. Sami Gürpınar
