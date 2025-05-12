@@ -68,27 +68,22 @@ void LifeSimulator::findAliveNeighbors(Cell& cell) {
 }
 
  void LifeSimulator::checkNeighbor(Cell& currentAlive, Cell& neighbor) {
-    int found = 0;
-
-    for (int i = 0; i < mAliveCells.size(); i++) {
+    int i;
+    
+    for (i = 0; i < mAliveCells.size(); i++) {
         if (mAliveCells[i] == neighbor) {
             currentAlive.incrementAliveNeighbors();
-            found = 1;
+            return;
         }
     }
 
-    if (!found) {
-        for (int i = 0; i < mNeighboringDeadCells.size(); i++) {
-            if (mNeighboringDeadCells[i] == neighbor) {
-                found = 1;
-                mNeighboringDeadCells[i].incrementAliveNeighbors();
-                break;
-            }
+    for (i = 0; i < mNeighboringDeadCells.size(); i++) {
+        if (mNeighboringDeadCells[i] == neighbor) {
+            mNeighboringDeadCells[i].incrementAliveNeighbors();
+            return;
         }
+    }
 
-        if (!found) {
-            neighbor.incrementAliveNeighbors();
-            mNeighboringDeadCells.push_back(neighbor);
-        }
-    }  
+    neighbor.incrementAliveNeighbors();
+    mNeighboringDeadCells.push_back(neighbor);
 }
