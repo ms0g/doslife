@@ -22,7 +22,7 @@ enum COLORS {
     WHITE
 };
 
-static unsigned char far* VRAM = (unsigned char far*)0xA0000000L;
+static unsigned char far* VRAM;
 static unsigned char far* offscreen;
 
 #ifdef __cplusplus

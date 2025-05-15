@@ -9,6 +9,7 @@
 #define VRAM_SIZE 64000u
 
 void vgaInit(void) {
+    VRAM = (unsigned char far*)0xA0000000L;
     offscreen = (unsigned char far*)farmalloc(VRAM_SIZE);
 
     if (offscreen) {
