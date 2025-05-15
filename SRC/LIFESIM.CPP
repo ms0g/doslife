@@ -43,9 +43,9 @@ void LifeSimulator::update(void) {
     mNewlyDeadCells.clear();
 }
 
-void LifeSimulator::draw(Renderer* renderer) {
+void LifeSimulator::draw(void) {
     for (int i = 0; i < mAliveCells.size(); i++) {
-        renderer->rectangle(
+        rectangle(
             mAliveCells[i].x(),
             mAliveCells[i].y(),
             mAliveCells[i].width(),

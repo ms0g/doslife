@@ -47,14 +47,13 @@ private:
     int mAliveNeighbors;
 };
 
-class Renderer;
 class LifeSimulator {
 public:
     LifeSimulator();
 
     void update(void);
 
-    void draw(Renderer* renderer);
+    void draw(void);
 
 private:
     void findAliveNeighbors(Cell& cell);
