@@ -20,9 +20,6 @@ enum COLORS {
     WHITE
 };
 
-static unsigned char far* vram;
-static unsigned char far* offscreen;
-
 #ifdef __cplusplus
 extern "C" {
 #endif

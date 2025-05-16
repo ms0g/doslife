@@ -8,6 +8,9 @@
 
 #define VRAM_SIZE 64000u
 
+static unsigned char far* vram;
+static unsigned char far* offscreen;
+
 static void _waitvretrace(void);
 static void _init_mode(int mode);
 
