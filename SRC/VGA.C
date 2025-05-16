@@ -8,19 +8,22 @@
 
 #define VRAM_SIZE 64000u
 
+static void _waitvretrace(void);
+static void _init_mode(int mode);
+
 void vga_init(void) {
-    VRAM = (unsigned char far*)0xA0000000L;
+    vram = (unsigned char far*)0xA0000000L;
     offscreen = (unsigned char far*)farmalloc(VRAM_SIZE);
 
     if (offscreen) {
         _fmemset(offscreen, 0, VRAM_SIZE);
-        _initMode(MODE_VGA_13H);
+        _init_mode(MODE_VGA_13H);
     } 
 }
 
 void vga_exit(void) {
      farfree(offscreen);
-    _initMode(MODE_VGA_3H);
+    _init_mode(MODE_VGA_3H);
 }
 
 void vga_clroffscreen(char color) {
@@ -33,5 +36,32 @@ void vga_putpixel(int x, int y, char color) {
 
 void vga_update_vram(void) {
     _waitvretrace();
-    _fmemcpy(VRAM, offscreen, VRAM_SIZE);
+    _fmemcpy(vram, offscreen, VRAM_SIZE);
+}
+
+static void _waitvretrace(void) {
+    asm { cli }
+v1: 
+    asm {
+        mov dx, 03dah  
+        in al, dx      
+        test al, 08h   
+        jnz v1
+    }
+v2:
+    asm { 
+        mov dx, 03dah
+        in al, dx
+        test al, 08h
+        jz v2          
+        sti
+    }
+}
+
+static void _init_mode(int mode) {
+    asm {
+        xor ah, ah    
+        mov ax, mode
+        int 10h
+    }
 }

@@ -1,8 +1,6 @@
 #ifndef VGA_H
 #define VGA_H
 
-#include <_defs.h>
-
 enum COLORS {
     BLACK,		    /* dark colors */
     BLUE,
@@ -22,16 +20,12 @@ enum COLORS {
     WHITE
 };
 
-static unsigned char far* VRAM;
+static unsigned char far* vram;
 static unsigned char far* offscreen;
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-void _Cdecl _waitvretrace(void);
-void _Cdecl _putpixel(int x, int y, char color);
-void _Cdecl _initMode(int mode);
-
 void vga_init(void);
 
 void vga_exit(void);
