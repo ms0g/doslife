@@ -8,9 +8,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-void kbInit(void);
+void kb_init(void);
 
-void kbExit(void);
+void kb_exit(void);
 
 unsigned char kbhit(void);
 #ifdef __cplusplus

@@ -4,11 +4,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-void rectangle(int x, int y, int width, int height, char color);
+void rnd_rectangle(int x, int y, int width, int height, char color);
 
-void clear(char color);
+void rnd_clear(char color);
 
-void updateBuffer(void);
+void rnd_update_buffer(void);
 #ifdef __cplusplus
 }
 #endif

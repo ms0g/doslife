@@ -9,19 +9,23 @@ typedef struct {
     int x, y;
     char color;
     int width, height;
-    int aliveNeighbors;
+    int aliveNeighborsCount;
 } Cell;
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+typedef struct {    
+    int count;      
+    int capacity;   
+    Cell* data;     
+} CellArray;   
 
-void cellInit(Cell* cell, int x, int y, int width, int height, char color);
+void cell_init(Cell* cell, int x, int y, int width, int height, char color);
+int cell_is_equal(const Cell* c1, const Cell* c2);
 
-int checkEquality(const Cell* cell1, const Cell* cell2);
-
-#ifdef __cplusplus
-}
-#endif
+void ca_init(CellArray* ca, int size);
+void ca_pushback(CellArray* ca, Cell cell);
+void ca_remove(CellArray* ca, int index);
+Cell* ca_at(CellArray* ca, int index);
+void ca_clear(CellArray* ca);
+void ca_free(CellArray* ca);
 
 #endif

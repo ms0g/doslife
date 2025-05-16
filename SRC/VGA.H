@@ -32,15 +32,15 @@ void _Cdecl _waitvretrace(void);
 void _Cdecl _putpixel(int x, int y, char color);
 void _Cdecl _initMode(int mode);
 
-void vgaInit(void);
+void vga_init(void);
 
-void vgaExit(void);
+void vga_exit(void);
   
-void vgaPutpixel(int x, int y, char color);
+void vga_putpixel(int x, int y, char color);
 
-void vgaClroffscreen(char color);
+void vga_clroffscreen(char color);
 
-void vgaUpdateVRAM(void);
+void vga_update_vram(void);
 #ifdef __cplusplus
 }
 #endif

@@ -1,19 +1,19 @@
 #include "RENDERER.H"
 #include "VGA.H"
 
-void rectangle(int x, int y, int width, int height, char color) {
+void rnd_rectangle(int x, int y, int width, int height, char color) {
     int i,j;
     for (i = 0; i < width; i++) {
         for (j = 0; j < height; j++) {
-            vgaPutpixel(x + i, y + j, color);
+            vga_putpixel(x + i, y + j, color);
         }
     }
 }
 
-void clear(char color) {
-    vgaClroffscreen(color);
+void rnd_clear(char color) {
+    vga_clroffscreen(color);
 }
 
-void updateBuffer(void) {
-    vgaUpdateVRAM();
+void rnd_update_buffer(void) {
+    vga_update_vram();
 }
