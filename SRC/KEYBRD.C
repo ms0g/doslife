@@ -48,7 +48,7 @@ https://wiki.osdev.org/Interrupt_Vector_Table
 +-----------+-----------+
 4           2           0 
 */
-void initkb(void) {
+void kbInit(void) {
     asm {
         push bx
         push es
@@ -68,7 +68,7 @@ void initkb(void) {
     }
 }
 
-void exitkb(void) {
+void kbExit(void) {
     asm { 
         push bx
         push es
@@ -99,5 +99,5 @@ unsigned char kbhit(void) {
         return ESC;
     } 
     
-    return -1;
+    return 0;
 }

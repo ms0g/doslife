@@ -30,7 +30,7 @@ void main(void) {
     isRunning = 1;
 
     vgaInit();
-    initkb();
+    kbInit();
 
     while (isRunning) {
         processInput();
@@ -39,7 +39,7 @@ void main(void) {
     }
 
     vgaExit();
-    exitkb();
+    kbExit();
 }
 
 
