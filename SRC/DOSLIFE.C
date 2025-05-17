@@ -85,8 +85,12 @@ static void process_neighbors(Cell* cell) {
 
     for (i = 0; i < NEIGHBOR_COUNT; i++) {
         Cell neighbor;
-        cell_init(&neighbor, cell->x + neighborState[i][0], cell->y + neighborState[i][1], CELL_WIDTH, CELL_HEIGHT, CELL_COLOR);
-
+        neighbor.x = cell->x + neighbor_state[i][0];
+        neighbor.y = cell->y + neighbor_state[i][1];
+        neighbor.width = CELL_WIDTH;
+        neighbor.height = CELL_HEIGHT;
+        neighbor.color = CELL_COLOR;
+        neighbor.aliveNeighborsCount = 0;
         // Check grid borders
         if (neighbor.x < 0 || neighbor.y < 0 || neighbor.x >= 312 || neighbor.y >= 192)
             continue;
@@ -129,8 +133,14 @@ static void initialize_cells(void) {
     
     for (i = 0; i < INITIAL_CELL_COUNT; i++) {
         Cell cell;
-        cell_init(&cell, initialState[i][0], initialState[i][1], CELL_WIDTH, CELL_HEIGHT, CELL_COLOR);
-        ca_pushback(&aliveCells, &cell);
+        cell.x = initial_state[i][0];
+        cell.y = initial_state[i][1];
+        cell.width = CELL_WIDTH;
+        cell.height = CELL_HEIGHT;
+        cell.color = CELL_COLOR;
+        cell.aliveNeighborsCount = 0;
+
+        ca_pushback(&alive_cells, &cell);
     }
 }
  

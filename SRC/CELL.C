@@ -1,15 +1,6 @@
 #include "CELL.H"
 #include <stdlib.h>
 
-void cell_init(Cell* cell, int x, int y, int width, int height, char color) {
-    cell->x = x;
-    cell->y = y;
-    cell->width = width;
-    cell->height = height;
-    cell->color = color;
-    cell->aliveNeighborsCount = 0;
-}
-
 void ca_init(CellArray* ca, int size) {
     ca->count = 0;
     ca->capacity = size;
