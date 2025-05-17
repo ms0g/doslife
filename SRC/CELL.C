@@ -24,13 +24,13 @@ void ca_init(CellArray* ca, int size) {
     ca->data = (Cell*)malloc(size * sizeof(Cell));
 }
 
-void ca_pushback(CellArray* ca, Cell cell) {
+void ca_pushback(CellArray* ca, Cell* cell) {
     if (ca->count == ca->capacity) {
         ca->capacity *= 2;
         ca->data = (Cell*)realloc(ca->data, ca->capacity * sizeof(Cell));
     }
 
-    ca->data[ca->count++] = cell;
+    ca->data[ca->count++] = *cell;
 }
 
 void ca_remove(CellArray* ca, int index) {

@@ -30,7 +30,7 @@ static void update(void) {
         process_neighbors(cell);
             
         if (cell->aliveNeighborsCount < 2 || cell->aliveNeighborsCount > 3) {
-           ca_pushback(&newlyDeadCells, *cell);
+           ca_pushback(&newlyDeadCells, cell);
         }
             
         cell->aliveNeighborsCount = 0;
@@ -41,7 +41,7 @@ static void update(void) {
         
         if (cell->aliveNeighborsCount == 3) {
             cell->aliveNeighborsCount = 0;
-            ca_pushback(&aliveCells, *cell);
+            ca_pushback(&aliveCells, cell);
         }
     }
 
@@ -119,7 +119,7 @@ static void process_neighbors(Cell* cell) {
     }
 
     neighbor->aliveNeighborsCount++;
-    ca_pushback(&neighboringDeadCells, *neighbor);
+    ca_pushback(&neighboringDeadCells, neighbor);
 }
 
 static void initialize_cells(void) {
@@ -131,7 +131,7 @@ static void initialize_cells(void) {
     for (i = 0; i < INITIAL_CELL_COUNT; i++) {
         Cell cell;
         cell_init(&cell, initialState[i][0], initialState[i][1], CELL_WIDTH, CELL_HEIGHT, CELL_COLOR);
-        ca_pushback(&aliveCells, cell);
+        ca_pushback(&aliveCells, &cell);
     }
 }
  
