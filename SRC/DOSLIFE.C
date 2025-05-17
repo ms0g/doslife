@@ -3,19 +3,19 @@
 #include "STATES.H"
 #include "CELL.H"
 
-static int isRunning;
-static CellArray aliveCells;
-static CellArray neighboringDeadCells;
-static CellArray newlyDeadCells;
+static int is_running;
+static CellArray alive_cells;
+static CellArray neighboring_dead_cells;
+static CellArray newly_dead_cells;
 
 static void process_neighbors(Cell* cell);
-static void check_neighbor(Cell* currentAlive, Cell* neighbor);
+static void check_neighbor(Cell* current_alive, Cell* neighbor);
 
 static void process_input(void) {
     char key = kbhit();
 
     if (key == ESC) {
-        isRunning = 0;
+        is_running = 0;
     }
 }
 
@@ -23,50 +23,51 @@ static void update(void) {
     int i,j;
     Cell* cell;
         
-    for (i = 0; i < aliveCells.count; i++) {
-        cell = ca_at(&aliveCells, i);
+    for (i = 0; i < alive_cells.count; i++) {
+        cell = ca_at(&alive_cells, i);
         
         process_neighbors(cell);
             
         if (cell->aliveNeighborsCount < 2 || cell->aliveNeighborsCount > 3) {
-           ca_pushback(&newlyDeadCells, cell);
+           ca_pushback(&newly_dead_cells, cell);
         }
             
         cell->aliveNeighborsCount = 0;
     } 
         
-    for (i = 0; i < neighboringDeadCells.count; i++) {
-        cell = ca_at(&neighboringDeadCells, i);
+    for (i = 0; i < neighboring_dead_cells.count; i++) {
+        cell = ca_at(&neighboring_dead_cells, i);
         
         if (cell->aliveNeighborsCount == 3) {
             cell->aliveNeighborsCount = 0;
-            ca_pushback(&aliveCells, cell);
+            ca_pushback(&alive_cells, cell);
         }
     }
 
-    for (i = 0; i < newlyDeadCells.count; i++) {
-        Cell* deadCell = ca_at(&newlyDeadCells, i);
+    for (i = 0; i < newly_dead_cells.count; i++) {
+        Cell* deadCell = ca_at(&newly_dead_cells, i);
 
-        for (j = 0; j < aliveCells.count; j++) {
-            Cell* aliveCell = ca_at(&aliveCells, j);
+        for (j = 0; j < alive_cells.count; j++) {
+            Cell* aliveCell = ca_at(&alive_cells, j);
             
             if (CELL_IS_SAME(deadCell, aliveCell)) {
-                ca_remove(&aliveCells, j);
+                ca_remove(&alive_cells, j);
             }
         }
     }
 
-    ca_clear(&neighboringDeadCells);
-    ca_clear(&newlyDeadCells);
+    ca_clear(&neighboring_dead_cells);
+    ca_clear(&newly_dead_cells);
 }
 
 static void render(void) {
     int i;
+    Cell* cell;
 
     rnd_clear(0x0);
 
-    for (i = 0; i < aliveCells.count; i++) {
-        Cell* cell = ca_at(&aliveCells, i);
+    for (i = 0; i < alive_cells.count; i++) {
+        cell = ca_at(&alive_cells, i);
         
         rnd_rectangle(
             cell->x,
@@ -99,21 +100,21 @@ static void process_neighbors(Cell* cell) {
     }
 }
 
- static void check_neighbor(Cell* currentAlive, Cell* neighbor) {
+ static void check_neighbor(Cell* current_alive, Cell* neighbor) {
     int i;
     Cell* cell;
     
-    for (i = 0; i < aliveCells.count; i++) {
-        cell = ca_at(&aliveCells, i);
+    for (i = 0; i < alive_cells.count; i++) {
+        cell = ca_at(&alive_cells, i);
         
         if (CELL_IS_SAME(cell, neighbor)) {
-            currentAlive->aliveNeighborsCount++;
+            current_alive->aliveNeighborsCount++;
             return;
         }
     }
 
-    for (i = 0; i < neighboringDeadCells.count; i++) {
-        cell = ca_at(&neighboringDeadCells, i);
+    for (i = 0; i < neighboring_dead_cells.count; i++) {
+        cell = ca_at(&neighboring_dead_cells, i);
         
         if (CELL_IS_SAME(cell, neighbor)) {
             cell->aliveNeighborsCount++;
@@ -122,14 +123,14 @@ static void process_neighbors(Cell* cell) {
     }
 
     neighbor->aliveNeighborsCount++;
-    ca_pushback(&neighboringDeadCells, neighbor);
+    ca_pushback(&neighboring_dead_cells, neighbor);
 }
 
 static void initialize_cells(void) {
     int i;
-    ca_init(&aliveCells, INITIAL_CELL_COUNT);
-    ca_init(&neighboringDeadCells, 1);
-    ca_init(&newlyDeadCells, 1);
+    ca_init(&alive_cells, INITIAL_CELL_COUNT);
+    ca_init(&neighboring_dead_cells, 1);
+    ca_init(&newly_dead_cells, 1);
     
     for (i = 0; i < INITIAL_CELL_COUNT; i++) {
         Cell cell;
@@ -145,22 +146,22 @@ static void initialize_cells(void) {
 }
  
 void main(void) {
-    isRunning = 1;
+    is_running = 1;
 
     rnd_init();
     kb_init();
 
     initialize_cells();
     
-    while (isRunning) {
+    while (is_running) {
         process_input();
         update();
         render();
     }
 
-    ca_free(&aliveCells);
-    ca_free(&neighboringDeadCells);
-    ca_free(&newlyDeadCells);
+    ca_free(&alive_cells);
+    ca_free(&neighboring_dead_cells);
+    ca_free(&newly_dead_cells);
 
     rnd_exit();
     kb_exit();
