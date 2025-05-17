@@ -5,6 +5,8 @@
 #define CELL_HEIGHT 8
 #define CELL_COLOR  0x02
 
+#define CELL_IS_SAME(c1, c2) ((c1)->x == (c2)->x && (c1)->y == (c2)->y)
+
 typedef struct {
     int x, y;
     char color;
@@ -19,7 +21,6 @@ typedef struct {
 } CellArray;   
 
 void cell_init(Cell* cell, int x, int y, int width, int height, char color);
-int cell_is_equal(const Cell* c1, const Cell* c2);
 
 void ca_init(CellArray* ca, int size);
 void ca_pushback(CellArray* ca, Cell* cell);

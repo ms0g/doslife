@@ -10,14 +10,6 @@ void cell_init(Cell* cell, int x, int y, int width, int height, char color) {
     cell->aliveNeighborsCount = 0;
 }
 
-int cell_is_equal(const Cell* c1, const Cell* c2) {
-    if (c1 == NULL || c2 == NULL) {
-        return 0;
-    }
-    
-    return (c1->x == c2->x && c1->y == c2->y);
-}
-
 void ca_init(CellArray* ca, int size) {
     ca->count = 0;
     ca->capacity = size;
