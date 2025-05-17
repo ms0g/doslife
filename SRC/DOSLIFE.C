@@ -1,7 +1,6 @@
 #include "RENDERER.H"
 #include "KEYBRD.H"
 #include "STATES.H"
-#include "VGA.H"
 #include "CELL.H"
 
 static int isRunning;
@@ -51,7 +50,7 @@ static void update(void) {
         for (j = 0; j < aliveCells.count; j++) {
             Cell* aliveCell = ca_at(&aliveCells, j);
             
-            if (cell_is_equal(deadCell, aliveCell)) {
+            if (CELL_IS_SAME(deadCell, aliveCell)) {
                 ca_remove(&aliveCells, j);
             }
         }
@@ -64,7 +63,7 @@ static void update(void) {
 static void render(void) {
     int i;
 
-    rnd_clear(BLACK);
+    rnd_clear(0x0);
 
     for (i = 0; i < aliveCells.count; i++) {
         Cell* cell = ca_at(&aliveCells, i);
@@ -103,7 +102,7 @@ static void process_neighbors(Cell* cell) {
     for (i = 0; i < aliveCells.count; i++) {
         cell = ca_at(&aliveCells, i);
         
-        if (cell_is_equal(cell, neighbor)) {
+        if (CELL_IS_SAME(cell, neighbor)) {
             currentAlive->aliveNeighborsCount++;
             return;
         }
@@ -112,7 +111,7 @@ static void process_neighbors(Cell* cell) {
     for (i = 0; i < neighboringDeadCells.count; i++) {
         cell = ca_at(&neighboringDeadCells, i);
         
-        if (cell_is_equal(cell, neighbor)) {
+        if (CELL_IS_SAME(cell, neighbor)) {
             cell->aliveNeighborsCount++;
             return;
         }
@@ -138,7 +137,7 @@ static void initialize_cells(void) {
 void main(void) {
     isRunning = 1;
 
-    vga_init();
+    rnd_init();
     kb_init();
 
     initialize_cells();
@@ -153,7 +152,7 @@ void main(void) {
     ca_free(&neighboringDeadCells);
     ca_free(&newlyDeadCells);
 
-    vga_exit();
+    rnd_exit();
     kb_exit();
 }
 

@@ -4,6 +4,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+void rnd_init(void);
+
+void rnd_exit(void);
+
 void rnd_rectangle(int x, int y, int width, int height, char color);
 
 void rnd_clear(char color);
