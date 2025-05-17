@@ -149,6 +149,10 @@ void main(void) {
         render();
     }
 
+    ca_free(&aliveCells);
+    ca_free(&neighboringDeadCells);
+    ca_free(&newlyDeadCells);
+
     vga_exit();
     kb_exit();
 }
