@@ -1,13 +1,13 @@
 #include "CELL.H"
 #include <stdlib.h>
 
-void ca_init(CellArray* ca, int size) {
+void caInit(CellArray* ca, int size) {
     ca->count = 0;
     ca->capacity = size;
     ca->data = (Cell*)malloc(size * sizeof(Cell));
 }
 
-void ca_pushback(CellArray* ca, Cell* cell) {
+void caPushback(CellArray* ca, Cell* cell) {
     if (ca->count == ca->capacity) {
         ca->capacity *= 2;
         ca->data = (Cell*)realloc(ca->data, ca->capacity * sizeof(Cell));
@@ -16,7 +16,7 @@ void ca_pushback(CellArray* ca, Cell* cell) {
     ca->data[ca->count++] = *cell;
 }
 
-void ca_remove(CellArray* ca, int index) {
+void caRemove(CellArray* ca, int index) {
     int i;
 
     if (index < 0 || index >= ca->count) {
@@ -30,7 +30,7 @@ void ca_remove(CellArray* ca, int index) {
     ca->count--;
 }
 
-Cell* ca_at(CellArray* ca, int index) {
+Cell* caAt(CellArray* ca, int index) {
     if (index < 0 || index >= ca->count) {
         return NULL;
     }
@@ -38,12 +38,12 @@ Cell* ca_at(CellArray* ca, int index) {
     return &ca->data[index];
 }
 
-void ca_clear(CellArray* ca) {
+void caClear(CellArray* ca) {
     memset(ca->data, 0, ca->count * sizeof(Cell));
     ca->count = 0;
 }
 
-void ca_free(CellArray* ca) {
+void caFree(CellArray* ca) {
     free(ca->data);
     ca->data = NULL;
 }

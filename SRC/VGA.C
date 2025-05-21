@@ -12,32 +12,32 @@ static unsigned char far* vram;
 static unsigned char far* offscreen;
 
 static void _waitvretrace(void);
-static void _init_mode(int mode);
+static void _initMode(int mode);
 
-void vga_init(void) {
+void vgaInit(void) {
     vram = (unsigned char far*)0xA0000000L;
     offscreen = (unsigned char far*)farmalloc(VRAM_SIZE);
 
     if (offscreen) {
         _fmemset(offscreen, 0, VRAM_SIZE);
-        _init_mode(MODE_VGA_13H);
+        _initMode(MODE_VGA_13H);
     } 
 }
 
-void vga_exit(void) {
+void vgaExit(void) {
      farfree(offscreen);
-    _init_mode(MODE_VGA_3H);
+    _initMode(MODE_VGA_3H);
 }
 
-void vga_clroffscreen(char color) {
+void vgaClearOffscreen(char color) {
     _fmemset(offscreen, color, VRAM_SIZE);
 }
 
-void vga_putpixel(int x, int y, char color) {
+void vgaPutPixel(int x, int y, char color) {
     offscreen[(y << 8) + (y << 6) + x] = color;
 }
 
-void vga_update_vram(void) {
+void vgaUpdateVram(void) {
     _waitvretrace();
     _fmemcpy(vram, offscreen, VRAM_SIZE);
 }
@@ -61,7 +61,7 @@ v2:
     }
 }
 
-static void _init_mode(int mode) {
+static void _initMode(int mode) {
     asm {
         xor ah, ah    
         mov ax, mode

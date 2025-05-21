@@ -23,15 +23,15 @@ enum COLORS {
 #ifdef __cplusplus
 extern "C" {
 #endif
-void vga_init(void);
+void vgaInit(void);
 
-void vga_exit(void);
+void vgaExit(void);
   
-void vga_putpixel(int x, int y, char color);
+void vgaPutPixel(int x, int y, char color);
 
-void vga_clroffscreen(char color);
+void vgaClearOffscreen(char color);
 
-void vga_update_vram(void);
+void vgaUpdateVram(void);
 #ifdef __cplusplus
 }
 #endif

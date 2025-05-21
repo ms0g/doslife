@@ -48,7 +48,7 @@ https://wiki.osdev.org/Interrupt_Vector_Table
 +-----------+-----------+
 4           2           0 
 */
-void kb_init(void) {
+void kbInit(void) {
     asm {
         push bx
         push es
@@ -68,7 +68,7 @@ void kb_init(void) {
     }
 }
 
-void kb_exit(void) {
+void kbExit(void) {
     asm { 
         push bx
         push es
@@ -86,7 +86,7 @@ void kb_exit(void) {
     }
 }
 
-unsigned char kbhit(void) {
+unsigned char kbHit(void) {
     if (_keys[R_ARROW]) {
         return R_ARROW;
     }

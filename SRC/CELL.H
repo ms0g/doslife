@@ -20,11 +20,11 @@ typedef struct {
     Cell* data;     
 } CellArray;   
 
-void ca_init(CellArray* ca, int size);
-void ca_pushback(CellArray* ca, Cell* cell);
-void ca_remove(CellArray* ca, int index);
-Cell* ca_at(CellArray* ca, int index);
-void ca_clear(CellArray* ca);
-void ca_free(CellArray* ca);
+void caInit(CellArray* ca, int size);
+void caPushback(CellArray* ca, Cell* cell);
+void caRemove(CellArray* ca, int index);
+Cell* caAt(CellArray* ca, int index);
+void caClear(CellArray* ca);
+void caFree(CellArray* ca);
 
 #endif

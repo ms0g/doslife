@@ -4,15 +4,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-void rnd_init(void);
+void rndInit(void);
 
-void rnd_exit(void);
+void rndExit(void);
 
-void rnd_rectangle(int x, int y, int width, int height, char color);
+void rndDrawRectangle(int x, int y, int width, int height, char color);
 
-void rnd_clear(char color);
+void rndClear(char color);
 
-void rnd_update_buffer(void);
+void rndUpdateBuffer(void);
 #ifdef __cplusplus
 }
 #endif
