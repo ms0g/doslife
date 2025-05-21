@@ -2,9 +2,9 @@
 #include <string.h>
 #include <malloc.h>
 // VGA Graphics Mode
-#define MODE_VGA_13H 0x13
+#define VGA_MODE_13H 0x13
 // VGA Text Mode
-#define MODE_VGA_3H  0x3
+#define VGA_MODE_3H  0x3
 
 #define VRAM_SIZE 64000u
 
@@ -20,13 +20,13 @@ void vgaInit(void) {
 
     if (offscreen) {
         _fmemset(offscreen, 0, VRAM_SIZE);
-        _initMode(MODE_VGA_13H);
+        _initMode(VGA_MODE_13H);
     } 
 }
 
 void vgaExit(void) {
      farfree(offscreen);
-    _initMode(MODE_VGA_3H);
+    _initMode(VGA_MODE_3H);
 }
 
 void vgaClearOffscreen(char color) {
