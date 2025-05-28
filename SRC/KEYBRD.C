@@ -7,7 +7,7 @@
 #define KBC_BREAK   0x80
 #define SCP_KBC_DIS 0x80
 
-static volatile unsigned char _keys[256];
+static volatile unsigned char keys[256];
 
 static void interrupt (*old_irq)();
 
@@ -26,7 +26,7 @@ static void interrupt kbc_irq_handler() {
         mov code, al
     }
 PRESSED:   
-    _keys[code] = val;
+    keys[code] = val;
     
     asm {
         in al, KBC_SCP
@@ -87,15 +87,15 @@ void kbExit(void) {
 }
 
 unsigned char kbHit(void) {
-    if (_keys[R_ARROW]) {
+    if (keys[R_ARROW]) {
         return R_ARROW;
     }
     
-    if (_keys[L_ARROW]) {
+    if (keys[L_ARROW]) {
         return L_ARROW;
     }
     
-    if (_keys[ESC]) {
+    if (keys[ESC]) {
         return ESC;
     } 
     
