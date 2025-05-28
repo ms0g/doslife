@@ -3,7 +3,7 @@
 #include "STATES.H"
 #include "CELL.H"
 
-static int is_running;
+static int isRunning;
 static CellArray aliveCells;
 static CellArray neighboringDeadCells;
 static CellArray newlyDeadCells;
@@ -15,7 +15,7 @@ static void processInput(void) {
     char key = kbHit();
 
     if (key == ESC) {
-        is_running = 0;
+        isRunning = 0;
     }
 }
 
@@ -146,14 +146,14 @@ static void initializeCells(void) {
 }
  
 void main(void) {
-    is_running = 1;
+    isRunning = 1;
 
     rndInit();
     kbInit();
 
     initializeCells();
     
-    while (is_running) {
+    while (isRunning) {
         processInput();
         update();
         render();
